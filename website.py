@@ -11,16 +11,15 @@ if 'stage' not in st.session_state:
 def go_to_stage(stage_number):
     st.session_state.stage = stage_number
 
-# Create a container slot that we can wipe clean at the end
+
 header_slot = st.empty()
 
-# Only show the main birthday intro if NOT on the final stage
 if st.session_state.stage < 6:
     with header_slot.container():
         st.title("🎂 Happy Birthday!")
         st.write("All answers must be in numbers. If you get stuck, ask me for hints. Good luck!")
 else:
-    # Clear the placeholder entirely for the grand finale
+
     header_slot.empty()
 
 
@@ -32,7 +31,7 @@ if st.session_state.stage == 1:
     st.write("Hint: Think of your favorite pet...")
     k = st.number_input("Enter the key:", value=0, step=1, key="input_level_1")
     
-    if st.button("Submit Key", key="btn_1"):
+    if st.button("Unlock", key="btn_1"):
         if k == 76:
             st.success("Good job!")
             st.button("Proceed to Part 2", on_click=go_to_stage, args=(2,))
